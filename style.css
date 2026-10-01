@@ -359,8 +359,10 @@
 
       /* ---------- Section 3: Продукция ---------- */
       .products__list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        /* display: grid;
+        grid-template-columns: repeat(4, 1fr); */
+        display: flex;
+        flex-direction: row;
         gap: 16px;
         margin-top: 56px;
       }
@@ -373,6 +375,7 @@
         border: 1px solid var(--color-line);
         border-radius: 18px;
         background: var(--color-surface);
+        width: 100%;
         transition:
           border-color 0.3s,
           transform 0.3s;
@@ -455,13 +458,15 @@
         color: #aaa;
       }
 
-      .contact__success, .contact__failure {
+      .contact__success,
+      .contact__failure {
         display: none;
         padding: 12px;
         color: #ddd;
       }
 
-      .contact__success--visible, .contact__failure--visible {
+      .contact__success--visible,
+      .contact__failure--visible {
         display: block;
       }
 
@@ -864,6 +869,10 @@
         .products__list,
         .form__row {
           grid-template-columns: 1fr;
+        }
+
+        .products__list {
+          flex-direction: column;
         }
 
         .requisites__label {
