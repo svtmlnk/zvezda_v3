@@ -47,7 +47,6 @@ form.addEventListener("submit", (event) => {
   contact__subtitle.style.display = "none";
   loader.style.display = "inline-block";
 
-  // Важно: передаем заголовки Accept и Content-Type, чтобы Formspark вернул JSON, а не редирект
   fetch("https://submit-form.com/msRoBphP3", {
     method: "POST",
     headers: {
