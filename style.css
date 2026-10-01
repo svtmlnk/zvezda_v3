@@ -455,13 +455,13 @@
         color: #aaa;
       }
 
-      .contact__success {
+      .contact__success, .contact__failure {
         display: none;
         padding: 12px;
         color: #ddd;
       }
 
-      .contact__success--visible {
+      .contact__success--visible, .contact__failure--visible {
         display: block;
       }
 
@@ -600,6 +600,42 @@
 
       .btn:disabled:hover {
         transform: none;
+      }
+
+      /* анимация загрузки */
+
+      .loader {
+        display: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        position: relative;
+        background: linear-gradient(0deg, rgb(252 210 42 / 20%) 33%, #ffd321 100%);
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+
+      .loader::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--color-bg);
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
       }
 
       /* ---------- Подвал ---------- */

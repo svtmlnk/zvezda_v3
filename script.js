@@ -28,11 +28,46 @@ updateActiveLink();
 // --- Отправка формы (заглушка: данные никуда не уходят) ---
 const form = document.getElementById("contact-form");
 const success = document.getElementById("contact-success");
+const failure = document.getElementById("contact-failure");
+const contact__subtitle = document.querySelector(".contact__subtitle");
+const loader = document.querySelector(".loader");
 
 form.addEventListener("submit", (event) => {
-  // event.preventDefault();
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // Преобразуем данные формы в обычный объект
+  const object = {};
+  formData.forEach((value, key) => (object[key] = value));
+  const json = JSON.stringify(object);
+
   form.classList.add("form--hidden");
-  success.classList.add("contact__success--visible");
+  contact__subtitle.style.display = "none";
+  loader.style.display = "inline-block";
+
+  // Важно: передаем заголовки Accept и Content-Type, чтобы Formspark вернул JSON, а не редирект
+  fetch("https://submit-form.com/msRoBphP3", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: json,
+  })
+    .then((response) => {
+      if (response.ok) {
+        success.classList.add("contact__success--visible");
+      } else {
+        failure.classList.add("contact__failure--visible");
+      }
+
+      loader.style.display = "none";
+    })
+    .catch((error) => {
+      console.error("Ошибка:", error);
+    });
 });
 
 // // --- Капча SmartCaptcha ---

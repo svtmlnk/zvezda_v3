@@ -442,34 +442,7 @@
           Оставьте данные — менеджер свяжется с вами в течение рабочего дня.
         </p>
 
-        <form
-          class="form"
-          id="contact-form"
-          action="https://submit-form.com/msRoBphP3"
-          method="POST"
-          target="_blank"
-        >
-          <input
-            type="hidden"
-            name="_feedback.success.title"
-            value="Форма успешно отправлена!"
-          />
-          <input
-            type="hidden"
-            name="_feedback.success.message"
-            value="Спасибо! Мы свяжемся с вами в ближайшее время."
-          />
-          <input
-            type="hidden"
-            name="_feedback.error.title"
-            value="Форма не отправлена!"
-          />
-          <input
-            type="hidden"
-            name="_feedback.error.message"
-            value="Попробуйте отправить заявку ещё раз"
-          />
-          <input type="hidden" name="_feedback.language" value="ru" />
+        <form class="form" id="contact-form">
           <input
             class="form__input"
             name="name"
@@ -548,8 +521,14 @@
           </button>
         </form>
 
+        <span class="loader"></span>
+
         <div class="contact__success" id="contact-success">
           Спасибо! Заявка отправлена.
+        </div>
+
+        <div class="contact__failure" id="contact-failure">
+          Что-то пошло не так. Ваша заявка не отправлена, попробуйте еще раз
         </div>
       </div>
     </section>
