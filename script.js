@@ -69,77 +69,6 @@ form.addEventListener("submit", (event) => {
     });
 });
 
-// // --- Капча SmartCaptcha ---
-// let captchaWidgetId = null;
-
-// // Скрипт капчи вызывает эту функцию после загрузки (параметр onload в HTML)
-// function initCaptcha() {
-//   if (!window.smartCaptcha) return;
-//   const container = document.getElementById("captcha-container");
-//   captchaWidgetId = window.smartCaptcha.render(container, {
-//     sitekey: container.dataset.sitekey,
-//     hl: "ru",
-//   });
-// }
-
-// // --- Отправка формы с капча---
-// const form = document.getElementById("contact-form");
-// const success = document.getElementById("contact-success");
-// const formError = document.getElementById("form-error");
-// const submitButton = form.querySelector(".form__submit");
-
-// function showFormError(message) {
-//   formError.textContent = message;
-//   formError.hidden = false;
-// }
-
-// form.addEventListener("submit", async (event) => {
-//   event.preventDefault();
-//   formError.hidden = true;
-
-//   const token = window.smartCaptcha
-//     ? window.smartCaptcha.getResponse(captchaWidgetId)
-//     : "";
-//   if (!token) {
-//     showFormError("Подтвердите, что вы не робот.");
-//     return;
-//   }
-
-//   const data = new FormData(form);
-//   data.set("smart-token", token);
-
-//   const label = submitButton.textContent;
-//   submitButton.disabled = true;
-//   submitButton.textContent = "Отправка…";
-
-//   try {
-//     const response = await fetch(form.action, {
-//       method: "POST",
-//       body: data,
-//       headers: { Accept: "application/json" },
-//     });
-//     const result = await response.json().catch(() => ({}));
-//     if (!response.ok || !result.ok) {
-//       throw new Error(
-//         result.error || "Не удалось отправить заявку. Попробуйте позже.",
-//       );
-//     }
-//     form.classList.add("form--hidden");
-//     success.classList.add("contact__success--visible");
-//   } catch (error) {
-//     showFormError(
-//       error instanceof TypeError
-//         ? "Нет соединения с сервером. Проверьте интернет и попробуйте снова."
-//         : error.message,
-//     );
-//     // Токен капчи одноразовый: сбрасываем её для новой попытки
-//     if (window.smartCaptcha) window.smartCaptcha.reset(captchaWidgetId);
-//   } finally {
-//     submitButton.disabled = false;
-//     submitButton.textContent = label;
-//   }
-// });
-
 // --- Мобильное меню ---
 const header = document.querySelector(".site-header");
 const nav = document.getElementById("site-nav");
@@ -258,6 +187,5 @@ if (v) {
 }
 
 AOS.init({
-  // disable: 'phone',
   once: true,
 });
